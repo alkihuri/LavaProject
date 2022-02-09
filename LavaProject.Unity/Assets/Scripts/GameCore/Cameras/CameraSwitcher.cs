@@ -8,7 +8,7 @@ using System;
 public class CameraSwitcher : MonoBehaviour
 {
     #region events
-    UnityEvent OnCameraChanged = new UnityEvent();
+    public UnityEvent OnCameraChanged = new  UnityEvent ();
     #endregion
 
     #region fields
@@ -28,7 +28,7 @@ public class CameraSwitcher : MonoBehaviour
         _cameraChangeHotKey = KeyCode.V;
     }
 
-    private void CameraSwitchMainLogic()
+    private void CameraSwitchMainLogic( )
     {
         var currentCameraView = PlayerPrefs.GetInt(PLAYER_PREFS_KEY);
         _viewList[currentCameraView].Priority = NO_ACTIVE_CAM_KEY;
