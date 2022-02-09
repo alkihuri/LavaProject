@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class CharacterMovement : MonoBehaviour
 {
@@ -25,4 +26,11 @@ public class CharacterMovement : MonoBehaviour
         
         _player.SetDestination(_raycastManager.GetDestinationPoint());
     }
+}
+
+
+class Sueta
+{
+    UnityEvent _action;  
+
 }
