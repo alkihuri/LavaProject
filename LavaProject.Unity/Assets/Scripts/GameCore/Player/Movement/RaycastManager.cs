@@ -15,6 +15,7 @@ public class RaycastManager : MonoBehaviour
     }
     public Vector3 GetDestinationPoint()
     {
+        transform.LookAt(_destinationPoint);
         return _destinationPoint;
     }
 

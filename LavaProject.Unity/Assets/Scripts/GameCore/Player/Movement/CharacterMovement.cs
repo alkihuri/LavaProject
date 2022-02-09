@@ -22,15 +22,10 @@ public class CharacterMovement : MonoBehaviour
         if (!Input.GetMouseButtonDown(0))
             return;
         
-        
-        
+         
         _player.SetDestination(_raycastManager.GetDestinationPoint());
+        
     }
 }
 
-
-class Sueta
-{
-    UnityEvent _action;  
-
-}
+ 

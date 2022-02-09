@@ -7,15 +7,13 @@ using UnityEngine.Events;
 
 public class StateMachine : MonoBehaviour
 {
-    [SerializeField] PlayerState _stateToSet;
-
-    NavMeshAgent _player;
-
-    public UnityEvent _onStateChange;
+    [SerializeField] PlayerState _stateToSet; 
+    NavMeshAgent _player; 
+    public UnityEvent OnStateChange = new UnityEvent();
     private void Start()
     {
         _player = GetComponent<NavMeshAgent>();
-        _onStateChange.AddListener(SetState);
+        OnStateChange.AddListener(SetState);
     }
 
     public void SetState()
@@ -26,6 +24,6 @@ public class StateMachine : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))
-            SetState();
+            OnStateChange?.Invoke();
     }
 }

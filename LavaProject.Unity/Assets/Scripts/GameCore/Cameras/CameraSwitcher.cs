@@ -18,7 +18,7 @@ public class CameraSwitcher : MonoBehaviour
 
     #region constants
     const int CURRENT_CAM_KEY = 10;
-    const int NO_ACTIVE_CAM_KEY = 5;
+    const int NO_ACTIVE_CAM_KEY = 1;
     const string PLAYER_PREFS_KEY = "CurrentCamera.Priority";
     #endregion
 
