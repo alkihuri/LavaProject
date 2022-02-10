@@ -10,8 +10,8 @@ public class NpcController : MonoBehaviour
 
     [SerializeField] GameObject _tower;
     TowerController _towerController;
-    NavMeshAgent _npc;
-
+    NavMeshAgent _npc; 
+    [SerializeField] GameObject _particles;
     public UnityEvent OnDie = new UnityEvent();
     // Start is called before the first frame update
     void Start()
@@ -28,5 +28,9 @@ public class NpcController : MonoBehaviour
         Destroy(gameObject, 5);
     }
 
-     
+    private void OnDestroy()
+    {
+        GameObject particles = Instantiate(_particles, transform.position, transform.rotation);
+        Destroy(particles, 1);
+    }
 }

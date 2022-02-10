@@ -48,7 +48,7 @@ public class BulletContreoller : MonoBehaviour
     {
         if (other.gameObject.GetComponent<NpcController>())
             other.gameObject.GetComponent<NpcController>().OnDie?.Invoke();
-        if(!_rigidbody.isKinematic)
+        if(!_rigidbody.isKinematic  && !other.gameObject.GetComponent<BulletContreoller>())
             Destroy(gameObject); 
     }
     private void OnDestroy()

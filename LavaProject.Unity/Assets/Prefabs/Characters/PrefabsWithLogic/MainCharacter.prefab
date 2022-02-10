@@ -1684,3 +1684,4 @@ MonoBehaviour:
   _bullet: {fileID: 0}
   _enemy: {fileID: 0}
   _attacKey: 0
+  _bulletPrefab: {fileID: 6086438763731815597, guid: d9a9bcd601e320f4ca96a36ee685581f, type: 3}
