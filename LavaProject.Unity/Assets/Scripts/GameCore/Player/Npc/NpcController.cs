@@ -17,8 +17,8 @@ public class NpcController : MonoBehaviour
     void Start()
     {
         _npc = GetComponent<NavMeshAgent>();
-        //_towerController = _tower.GetComponent<TowerController>();
-        _npc.SetDestination(_tower.transform.position);
+         _towerController = _tower.GetComponent<TowerController>();
+        _npc.SetDestination(_towerController.FirePoint);
         OnDie.AddListener(Die);
     }
 
