@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 647071321}
   - component: {fileID: 5563897305667278731}
   - component: {fileID: 3629761363697157755}
+  - component: {fileID: 2760694020050521143}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -82,6 +83,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animnBlendParam: Speed
+--- !u!135 &2760694020050521143
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589233133111558883}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.37
+  m_Center: {x: 0, y: 1.14, z: 0}
 --- !u!1001 &589233133660907865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -89,10 +103,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 589233133111558892}
     m_Modifications:
+    - target: {fileID: 134294038070306091, guid: 2086888e46fa298469cfc8ea2b6d6204, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.000000040533514
+      objectReference: {fileID: 0}
+    - target: {fileID: 134294038070306091, guid: 2086888e46fa298469cfc8ea2b6d6204, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.013430357
+      objectReference: {fileID: 0}
+    - target: {fileID: 1995024166419580751, guid: 2086888e46fa298469cfc8ea2b6d6204, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.0071190596
+      objectReference: {fileID: 0}
+    - target: {fileID: 3257528767515193313, guid: 2086888e46fa298469cfc8ea2b6d6204, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: 0.000023447119
+      objectReference: {fileID: 0}
     - target: {fileID: 3475727649535714433, guid: 2086888e46fa298469cfc8ea2b6d6204, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 86365b85a58322945a143a1678314b9e, type: 2}
+    - target: {fileID: 3498705933443222829, guid: 2086888e46fa298469cfc8ea2b6d6204, type: 3}
+      propertyPath: m_ConnectedAnchor.x
+      value: -0.000000059371814
+      objectReference: {fileID: 0}
+    - target: {fileID: 3498705933443222829, guid: 2086888e46fa298469cfc8ea2b6d6204, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: 0.00000008195639
+      objectReference: {fileID: 0}
     - target: {fileID: 4845622797502905468, guid: 2086888e46fa298469cfc8ea2b6d6204, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -145,6 +183,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 86365b85a58322945a143a1678314b9e, type: 2}
+    - target: {fileID: 7761818804042631441, guid: 2086888e46fa298469cfc8ea2b6d6204, type: 3}
+      propertyPath: m_ConnectedAnchor.z
+      value: -0.028066464
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2086888e46fa298469cfc8ea2b6d6204, type: 3}
 --- !u!1 &5409522627038303524 stripped
@@ -201,7 +243,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 1ea8595000c813e4587174494bdde333, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -239,8 +281,8 @@ TrailRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.05465586
-        value: 0.546875
+        time: 0.04485972
+        value: 0.98165894
         inSlope: -2.1039112
         outSlope: -2.1039112
         tangentMode: 0

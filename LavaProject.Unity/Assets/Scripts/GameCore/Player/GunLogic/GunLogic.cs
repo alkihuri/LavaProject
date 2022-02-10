@@ -13,6 +13,7 @@ public class GunLogic : MonoBehaviour
     [SerializeField] GameObject _enemy;
 
     [SerializeField] KeyCode _attacKey;
+    [SerializeField] GameObject _bulletPrefab;
 
     private void Start()
     {
@@ -25,6 +26,8 @@ public class GunLogic : MonoBehaviour
     {
         _bullet.transform.SetParent(null);
         _bullet.AddComponent<Rigidbody>();
+        _bullet.GetComponent<BulletContreoller>().SetDestination(_enemy);
+       
     }
 
     // Update is called once per frame
@@ -32,5 +35,18 @@ public class GunLogic : MonoBehaviour
     {
         if (Input.GetKeyDown(_attacKey))
             OnShot.Invoke();
+        if(!(transform.childCount > 0))
+        {
+            GameObject newBullet = Instantiate(_bulletPrefab, transform);
+            newBullet.transform.localPosition = Vector3.zero;
+            newBullet.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f); //shit
+            _bullet = newBullet;
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (_enemy == null)
+            _enemy = GameObject.FindObjectOfType<NpcController>().gameObject;
     }
 }
