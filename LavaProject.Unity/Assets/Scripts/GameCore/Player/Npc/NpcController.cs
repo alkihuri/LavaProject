@@ -25,6 +25,7 @@ public class NpcController : MonoBehaviour
     public void Die()
     {
         GetComponentInChildren<Animator>().enabled = false;
+        Destroy(_npc);
         Destroy(gameObject, 5);
     }
 

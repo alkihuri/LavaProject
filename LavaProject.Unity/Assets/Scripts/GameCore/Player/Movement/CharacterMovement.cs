@@ -6,8 +6,7 @@ using UnityEngine.Events;
 
 public class CharacterMovement : MonoBehaviour
 {
-    NavMeshAgent _player;
-    [SerializeField] GameObject _someShit;
+    NavMeshAgent _player; 
     RaycastManager _raycastManager;
     // Start is called before the first frame update
     void Start()

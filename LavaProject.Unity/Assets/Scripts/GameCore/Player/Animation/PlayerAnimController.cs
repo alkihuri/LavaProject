@@ -7,6 +7,7 @@ public class PlayerAnimController : MonoBehaviour
 {
 
     [SerializeField] string _animnBlendParam;
+    [SerializeField] string _attackParam;
     Animator _animator;
     NavMeshAgent _player;
     // Start is called before the first frame update
@@ -21,5 +22,10 @@ public class PlayerAnimController : MonoBehaviour
     {
         var currentSpeed = Mathf.Clamp01(_player.velocity.magnitude);
         _animator.SetFloat(_animnBlendParam, currentSpeed);
+    }
+
+    public void PlayAttack()
+    {
+        _animator.SetTrigger(_attackParam); 
     }
 }
