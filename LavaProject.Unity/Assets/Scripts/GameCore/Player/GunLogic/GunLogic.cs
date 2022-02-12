@@ -63,6 +63,7 @@ public class GunLogic : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        if (_enemy != null)
+            _enemy = GameObject.FindObjectOfType<NpcController>().gameObject;
     }
 }

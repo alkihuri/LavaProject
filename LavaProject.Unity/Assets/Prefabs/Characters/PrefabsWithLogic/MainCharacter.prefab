@@ -1047,7 +1047,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 331582194742a0946a976a7bcbd7e9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _someShit: {fileID: 0}
 --- !u!195 &6226859110999275475
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1095,6 +1094,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animnBlendParam: speed
+  _attackParam: attack
 --- !u!114 &6226859110999275478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1660,7 +1660,7 @@ PositionConstraint:
   m_Enabled: 1
   m_Weight: 1
   m_TranslationAtRest: {x: 0.231, y: 0.91, z: 0.151}
-  m_TranslationOffset: {x: -0.021383226, y: -0.080206096, z: 0.07409622}
+  m_TranslationOffset: {x: -0.021383911, y: -0.080206096, z: 0.074096195}
   m_AffectTranslationX: 1
   m_AffectTranslationY: 1
   m_AffectTranslationZ: 1
@@ -1685,3 +1685,4 @@ MonoBehaviour:
   _enemy: {fileID: 0}
   _attacKey: 0
   _bulletPrefab: {fileID: 6086438763731815597, guid: d9a9bcd601e320f4ca96a36ee685581f, type: 3}
+  _playerAnimController: {fileID: 6226859110999275477}
