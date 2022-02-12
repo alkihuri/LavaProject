@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System.Linq;
 
 public class GunLogic : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class GunLogic : MonoBehaviour
 
     UnityEvent OnShot = new UnityEvent();
 
-    [SerializeField] GameObject _enemy;
+    [SerializeField] List<GameObject> _enemyList = new List<GameObject>();
 
     [SerializeField] KeyCode _attacKey;
     [SerializeField] GameObject _bulletPrefab;
@@ -29,7 +30,9 @@ public class GunLogic : MonoBehaviour
     }
 
     IEnumerator DelayShot(float sec)
-    { 
+    {
+
+        _enemyList = _enemyList.Where(enemy => enemy != null).ToList();
         _playerAnimController.PlayAttack();
         yield return new WaitForSeconds(sec);
         BulletReleaseAndShot();
@@ -38,8 +41,17 @@ public class GunLogic : MonoBehaviour
     private void BulletReleaseAndShot()
     {
         _bullet.transform.SetParent(null);
-        _bullet.AddComponent<Rigidbody>();
-        _bullet.GetComponent<BulletContreoller>().SetDestination(_enemy);
+        _bullet.AddComponent<Rigidbody>(); 
+
+        GameObject enemy = _enemyList
+                        .Select(enemy => enemy.transform)
+                            .OrderBy(enemyTransform 
+                                    => Vector3.Distance(transform.position, enemyTransform.position))
+                                            .ToList()[0].gameObject;
+        _bullet.GetComponent<BulletContreoller>().SetDestination(enemy);
+
+
+
     }
 
     // Update is called once per frame
@@ -61,9 +73,31 @@ public class GunLogic : MonoBehaviour
         _bullet = newBullet;
     }
 
-    private void FixedUpdate()
+    private void OnTriggerEnter(Collider other)
     {
-        if (_enemy != null)
-            _enemy = GameObject.FindObjectOfType<NpcController>().gameObject;
+        GameObject enteredObject = other.transform.gameObject;
+        if (enteredObject.GetComponent<NpcController>())
+        {
+            if(!_enemyList.Contains(enteredObject))
+                    _enemyList.Add(enteredObject);
+        }
+
+        if (_enemyList.Count > 0) 
+            GetComponent<GunLightController>().Switch(Color.red);
+    }
+    private void OnTriggerExit(Collider other)
+    {
+       
+        GameObject enteredObject = other.transform.gameObject;
+        if (enteredObject.GetComponent<NpcController>())
+        {
+            _enemyList.Remove(enteredObject);
+        }
+        if (_enemyList.Count<1)
+        {
+            _enemyList.Clear();
+            GetComponent<GunLightController>().Switch(Color.green);
+        }
+         
     }
 }

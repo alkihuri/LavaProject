@@ -26,12 +26,17 @@ public class NpcAiSonar : MonoBehaviour
     {
        while(_isActive)
        {  
-            for (int angle = 0; angle < 360; angle+=2)
+           for(float xAngle = 0;xAngle<2;xAngle+=0.5f)
             {
-                _sonar.transform.rotation = Quaternion.Euler(0, angle, 0);
-                DebugRays();
-                RaycastFeature();
-                yield return new WaitForSeconds(1 / 30);
+                for (int yAngle = 0; yAngle < 360; yAngle += 10)
+                {
+                    _sonar.transform.rotation = Quaternion.Euler( 0,yAngle, 0);
+                    _sonar.transform.localPosition =  new Vector3(0, xAngle, 0);
+                    DebugRays();
+                    RaycastFeature();
+                }
+
+                yield return new WaitForSeconds(1 /2);
             }
         }
     }
@@ -58,7 +63,7 @@ public class NpcAiSonar : MonoBehaviour
     {
         Vector3 start = _sonar.transform.position;
         Vector3 direction = _sonar.transform.GetChild(0).transform.position;
-        Debug.DrawLine(start, direction, Color.yellow, 1);
+        Debug.DrawLine(start, direction, Color.yellow, 0.49f);
     }
 
 

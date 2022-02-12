@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2097d5a1a25a4a947903fa6fde364564, type: 3}
   m_Name: High
   m_EditorClassIdentifier: 
-  CHARACTER_SPEED: 55
+  CHARACTER_SPEED: 15
   SHOOTING_SPEED: 0
   BULLET_POWER: 0
