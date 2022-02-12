@@ -32,7 +32,7 @@ public class GunLogic : MonoBehaviour
     IEnumerator DelayShot(float sec)
     {
 
-        _enemyList = _enemyList.Where(enemy => enemy != null).ToList();
+        _enemyList = _enemyList.Where(enemy => enemy != null).ToList();  
         _playerAnimController.PlayAttack();
         yield return new WaitForSeconds(sec);
         BulletReleaseAndShot();
@@ -40,25 +40,26 @@ public class GunLogic : MonoBehaviour
 
     private void BulletReleaseAndShot()
     {
-        _bullet.transform.SetParent(null);
-        _bullet.AddComponent<Rigidbody>(); 
-
-        GameObject enemy = _enemyList
-                        .Select(enemy => enemy.transform)
-                            .OrderBy(enemyTransform 
-                                    => Vector3.Distance(transform.position, enemyTransform.position))
-                                            .ToList()[0].gameObject;
-        _bullet.GetComponent<BulletContreoller>().SetDestination(enemy);
-
-
-
+       if(_enemyList.Count>0)
+        {
+            _bullet.transform.SetParent(null);
+            GameObject enemy = _enemyList
+                            .Select(enemy => enemy.transform)
+                                .OrderBy(enemyTransform
+                                        => Vector3.Distance(transform.position, enemyTransform.position))
+                                                .ToList()[0].gameObject;
+            _bullet.GetComponent<BulletContreoller>().SetDestination(enemy);
+        }
+         
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(_attacKey))
+        {
             OnShot.Invoke();
+        }
         if(!(transform.childCount > 0))
         {
             NewBulletSpawn();
@@ -69,7 +70,7 @@ public class GunLogic : MonoBehaviour
     {
         GameObject newBullet = Instantiate(_bulletPrefab, transform);
         newBullet.transform.localPosition = Vector3.zero;
-        newBullet.transform.localScale = new Vector3(0.25f, 0.25f, 0.25f); //shit
+        newBullet.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f); //shit
         _bullet = newBullet;
     }
 
@@ -84,6 +85,12 @@ public class GunLogic : MonoBehaviour
 
         if (_enemyList.Count > 0) 
             GetComponent<GunLightController>().Switch(Color.red);
+        else
+        {
+            _enemyList.Clear();
+            GetComponent<GunLightController>().Switch(Color.green);
+        }
+
     }
     private void OnTriggerExit(Collider other)
     {

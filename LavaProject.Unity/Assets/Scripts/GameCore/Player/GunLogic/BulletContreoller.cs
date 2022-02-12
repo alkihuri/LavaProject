@@ -12,9 +12,11 @@ public class BulletContreoller : MonoBehaviour
     [SerializeField,Range(0,100)] float _timeToDie = 2;
     private float  _power = 10;
 
+    [SerializeField] AnimationCurve _sizeOverLife;
+
     private void Start()
     {
-
+        
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.isKinematic = true;
         _rigidbody.useGravity = false; 
@@ -22,8 +24,14 @@ public class BulletContreoller : MonoBehaviour
     }
 
     private void FixedUpdate()
-    {  
-        if(_target != null)
+    {
+
+        if(!_rigidbody.isKinematic)
+        {
+            var distace = Vector3.Distance(transform.position, _target.transform.position);
+            transform.localScale = Vector3.one * _sizeOverLife.Evaluate(Mathf.Clamp(distace, 0, 1));
+        }
+        if (_target != null)
         {
             NpcTarget();
         }
@@ -36,7 +44,7 @@ public class BulletContreoller : MonoBehaviour
 
     private void NoTarget()
     {
-         
+        _rigidbody.AddRelativeForce(transform.forward * _power);
     }
 
     private void NpcTarget()
@@ -59,12 +67,18 @@ public class BulletContreoller : MonoBehaviour
     {
         if (other.gameObject.GetComponent<NpcController>() && !_rigidbody.isKinematic)
             other.gameObject.GetComponent<NpcController>().OnDie?.Invoke();
-        if(!_rigidbody.isKinematic  && other.gameObject.GetComponent<NpcController>())
-            Destroy(gameObject); 
+        if(!_rigidbody.isKinematic  && other.gameObject.GetComponent<NpcController>() )
+            Destroy(gameObject);  
     }
     private void OnDestroy()
     {
-        GameObject particles = Instantiate(_particles,transform.position,transform.rotation);
-        Destroy(particles, 1);
+        if(_rigidbody.velocity.magnitude > 2)
+        {
+            GameObject particles = Instantiate(_particles, transform.position, transform.rotation);
+            Destroy(particles, 1);
+        }
     }
+
+
+    
 }
