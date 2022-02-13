@@ -10,8 +10,8 @@ public class BulletContreoller : MonoBehaviour
     [SerializeField] Rigidbody _rigidbody;
     [SerializeField] GameObject _particles;
     [SerializeField,Range(0,100)] float _timeToDie = 2;
-    private float  _power = 10;
-
+    private float _speed;
+    private float _power;
     [SerializeField] AnimationCurve _sizeOverLife;
 
     private void Start()
@@ -44,7 +44,7 @@ public class BulletContreoller : MonoBehaviour
 
     private void NoTarget()
     {
-        _rigidbody.AddRelativeForce(transform.forward * _power);
+        _rigidbody.AddRelativeForce(transform.forward * _speed);
     }
 
     private void NpcTarget()
@@ -52,7 +52,7 @@ public class BulletContreoller : MonoBehaviour
         Vector3 v1 = transform.position;
         Vector3 v2 = _target.transform.position;
         Vector3 v3 = v2 - v1;
-        _rigidbody.AddForce(v3 * _power );
+        _rigidbody.AddForce(v3 * _speed );
     }
 
 
@@ -66,10 +66,19 @@ public class BulletContreoller : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<NpcController>() && !_rigidbody.isKinematic)
-            other.gameObject.GetComponent<NpcController>().OnDie?.Invoke();
+        {
+            other.gameObject.GetComponent<NpcController>().GiveDamage(_power);
+        }
         if(!_rigidbody.isKinematic  && other.gameObject.GetComponent<NpcController>() )
             Destroy(gameObject);  
     }
+
+    internal void SetUp(float bulletPower, float bulletSpeed)
+    {
+        _speed = bulletSpeed;
+        _power = bulletPower;
+    }
+
     private void OnDestroy()
     {
         if(_rigidbody.velocity.magnitude > 2)

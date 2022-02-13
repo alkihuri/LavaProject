@@ -1,29 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class NpcHealthController : MonoBehaviour
-{
-    public Text _healthPointsTextField;
-    public float _health;
+{ 
+    public float _health; 
+    [SerializeField] public UnityEvent OnDie = new UnityEvent();
     // Start is called before the first frame update
     void Start()
     { 
         _health = 100;
+        OnDie.AddListener(Die);
     }
     public void TakeDamage(float gunDamageRate)
     {
-        _health = _health - gunDamageRate; 
-        if (_health < 0)
-        {
-            GetComponentInChildren<Animator>().enabled = false;
-            Destroy(gameObject);
-        }
+        var newHP = _health - gunDamageRate;
+        _health = Mathf.Clamp(newHP, 0, 100);
+        if (_health <= 0)  OnDie.Invoke();
+      
     }
-
-    private void Update()
+     
+    public void Die()
     {
-        _healthPointsTextField.text = _health.ToString() + "/" + 100;
-    }
+        GetComponentInChildren<Animator>().enabled = false;
+        Destroy(gameObject);
+    } 
 }

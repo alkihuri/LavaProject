@@ -315,11 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 209410e4221544f4c89b0a1462387e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tower: {fileID: 0}
   _particles: {fileID: 1000011128802252, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
-  OnDie:
-    m_PersistentCalls:
-      m_Calls: []
   _isLookingForPlayer: 0
 --- !u!114 &3629761363697157755
 MonoBehaviour:
@@ -378,8 +374,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a0d0008e572c154c88d65afe6f85b48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthPointsTextField: {fileID: 853222090}
   _health: 0
+  OnDie:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &5251363117814415527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,14 +418,14 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: PlayerAnimController, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
+        m_TargetAssemblyTypeName: PlayerHealthController, Assembly-CSharp
+        m_MethodName: TakeDamage
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 0.1
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2

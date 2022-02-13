@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2097d5a1a25a4a947903fa6fde364564, type: 3}
-  m_Name: Seetings
+  m_Name: Medium
   m_EditorClassIdentifier: 
-  CHARACTER_SPEED: 155
-  SHOOTING_SPEED: 0
-  BULLET_POWER: 0
+  CHARACTER_SPEED: 15
+  SHOOTING_SPEED: 10
+  BULLET_POWER: 10

@@ -19,13 +19,13 @@ public class PlayerHealthController : MonoBehaviour
     public void TakeDamage(float damageValue)
     {
         if (_immortalMode)
-            return;
-
-        var newValue = _health - damageValue;
-        _health = Mathf.Clamp(newValue, 0, 100); 
-        if(_health <= 0 )
         {
-            Destroy(gameObject);
+            var newValue = _health - damageValue;
+            _health = Mathf.Clamp(newValue, 0, 100);
+            if (_health <= 0)
+            {
+                Destroy(gameObject);
+            }
         } 
     }
 
