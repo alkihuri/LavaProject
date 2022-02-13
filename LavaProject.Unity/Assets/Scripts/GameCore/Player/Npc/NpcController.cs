@@ -27,8 +27,7 @@ public class NpcController : MonoBehaviour
 
     public void Die()
     {
-        GetComponentInChildren<Animator>().enabled = false; 
-        Destroy(gameObject);
+        GetComponent<NpcHealthController>().TakeDamage(51);
     }
 
     private void OnDestroy()
