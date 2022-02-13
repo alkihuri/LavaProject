@@ -12,6 +12,9 @@ public class NpcAiSonar : MonoBehaviour
     [SerializeField] NpcController _npcController;
     [SerializeField] Vector3 _attentionPoint;
 
+    [SerializeField, Range(0, 10)] float _distanceToPlayer;
+
+
     void Start()
     {
         _npcController = GetComponent<NpcController>();
@@ -48,14 +51,22 @@ public class NpcAiSonar : MonoBehaviour
         RaycastHit _objectOnVisionLine;
         if (Physics.Raycast(startVector, directionVector, out _objectOnVisionLine, _radius))
         {
+            var objectOnHitLine = _objectOnVisionLine.transform.gameObject;
 
-            if (_objectOnVisionLine.transform.gameObject.GetComponent<NpcController>())
+            if (objectOnHitLine.GetComponent<NpcController>())
                 return;
 
             _attentionPoint = _objectOnVisionLine.point;
             transform.LookAt(_attentionPoint); 
-            _npcController.SetDestination(_attentionPoint); 
            
+            if(objectOnHitLine.GetComponent<CharacterMovement>())
+            { 
+                _npcController.SetDestination(_attentionPoint);
+                _distanceToPlayer = _objectOnVisionLine.distance;
+                if(_distanceToPlayer < 4)
+                    GetComponent<NpcStateMachine>().SetState(NpcState.CurrentState.Attack);
+            }
+
         } 
     }
 

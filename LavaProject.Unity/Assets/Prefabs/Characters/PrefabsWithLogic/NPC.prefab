@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 2760694020050521143}
   - component: {fileID: 8712458323291539597}
   - component: {fileID: 7579029551170772956}
+  - component: {fileID: 5251363117814415527}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -377,6 +378,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthPointsTextField: {fileID: 853222090}
   _health: 0
+--- !u!114 &5251363117814415527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589233133111558883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04f96d4be2dbd75499580a47987f4758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &589233133660907865
 PrefabInstance:
   m_ObjectHideFlags: 0
