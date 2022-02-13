@@ -256,6 +256,7 @@ GameObject:
   - component: {fileID: 8712458323291539597}
   - component: {fileID: 7579029551170772956}
   - component: {fileID: 5251363117814415527}
+  - component: {fileID: 1839186411}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -333,7 +334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _animnBlendParam: Speed
-  _attackParam: 
+  _attackParam: Attack
 --- !u!135 &2760694020050521143
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -364,6 +365,7 @@ MonoBehaviour:
   _isActive: 1
   _npcController: {fileID: 5563897305667278731}
   _attentionPoint: {x: 0, y: 0, z: 0}
+  _distanceToPlayer: 0
 --- !u!114 &7579029551170772956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -390,6 +392,58 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04f96d4be2dbd75499580a47987f4758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnStateChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1839186411}
+        m_TargetAssemblyTypeName: NpcGunLogic, Assembly-CSharp
+        m_MethodName: DoAttack
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3629761363697157755}
+        m_TargetAssemblyTypeName: PlayerAnimController, Assembly-CSharp
+        m_MethodName: PlayAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlayerAnimController, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1839186411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589233133111558883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f838a078c159ac84bbbcca3c30ecc962, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _radiusOfAattack: 0
 --- !u!1001 &589233133660907865
 PrefabInstance:
   m_ObjectHideFlags: 0

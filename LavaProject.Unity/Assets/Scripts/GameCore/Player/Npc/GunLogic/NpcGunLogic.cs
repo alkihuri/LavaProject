@@ -20,7 +20,7 @@ public class NpcGunLogic : MonoBehaviour
             Rigidbody _physicOfEnemy = enemyOFNpc.GetComponent<Rigidbody>() ? enemyOFNpc.GetComponent<Rigidbody>() : null;
             if(_physicOfEnemy != null)
             {
-                _physicOfEnemy.AddForce(transform.up * power, ForceMode.Impulse);
+               // _physicOfEnemy.AddForce(transform.up * power, ForceMode.Impulse);
             }
 }
     }
