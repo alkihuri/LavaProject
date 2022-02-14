@@ -32,7 +32,7 @@ public class NpcController : MonoBehaviour
                 return;
         _npc.SetDestination(point);
         if (_npc.velocity.magnitude > 0)
-            GetComponent<NpcStateMachine>().SetState(NpcStateSetting.CurrentState.Run);
+            GetComponent<NpcStateMachine>().SetState(StateSettings.CurrentState.Run);
     }
 
     public void  GiveDamage(float _power)

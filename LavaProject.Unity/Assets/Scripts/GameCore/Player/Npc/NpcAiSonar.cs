@@ -66,7 +66,7 @@ public class NpcAiSonar : MonoBehaviour
                 _npcController.SetDestination(_attentionPoint);
                 _distanceToPlayer = _objectOnVisionLine.distance;
                 if(_distanceToPlayer < 4)
-                    GetComponent<NpcStateMachine>().SetState(NpcStateSetting.CurrentState.Attack);
+                    GetComponent<NpcStateMachine>().SetState(StateSettings.CurrentState.Attack);
             }
 
         } 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerAnimController : MonoBehaviour
+public class PlayerAnimController : MonoBehaviour, IAnimator
 {
 
     [SerializeField] string _animnBlendParam;

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using NpcStateSetting;
+using StateSettings;
 
-public class NpcStateMachine : MonoBehaviour
+public class NpcStateMachine : MonoBehaviour,IStateMachine
 { 
     public UnityEvent OnAttackState = new UnityEvent();
     public UnityEvent OnIdleState   = new UnityEvent();
