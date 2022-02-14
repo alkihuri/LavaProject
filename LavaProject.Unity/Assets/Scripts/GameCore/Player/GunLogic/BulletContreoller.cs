@@ -9,10 +9,11 @@ public class BulletContreoller : MonoBehaviour
     GameObject _target;
     [SerializeField] Rigidbody _rigidbody;
     [SerializeField] GameObject _particles;
-    [SerializeField,Range(0,100)] float _timeToDie = 2;
+    [SerializeField,Range(0,100)] float _timeToDie = 0.1f;
     private float _speed;
     private float _power;
     [SerializeField] AnimationCurve _sizeOverLife;
+    private float distace;
 
     private void Start()
     {
@@ -28,8 +29,8 @@ public class BulletContreoller : MonoBehaviour
 
         if(!_rigidbody.isKinematic)
         {
-            var distace = Vector3.Distance(transform.position, _target.transform.position);
-            transform.localScale = Vector3.one * _sizeOverLife.Evaluate(Mathf.Clamp(distace, 0, 1));
+            distace = Vector3.Distance(transform.position, _target.transform.position);
+            transform.localScale = Vector3.one * _sizeOverLife.Evaluate(Mathf.Clamp(distace, 0, 1)); 
         }
         if (_target != null)
         {
@@ -81,7 +82,7 @@ public class BulletContreoller : MonoBehaviour
 
     private void OnDestroy()
     {
-        if(_rigidbody.velocity.magnitude > 2)
+        if (_rigidbody.velocity.magnitude > 2 && false)
         {
             GameObject particles = Instantiate(_particles, transform.position, transform.rotation);
             Destroy(particles, 1);

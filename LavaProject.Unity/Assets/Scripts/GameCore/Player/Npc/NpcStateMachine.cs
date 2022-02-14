@@ -2,14 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using NpcStateSetting;
 
 public class NpcStateMachine : MonoBehaviour
 { 
-    public UnityEvent OnStateChanged = new UnityEvent(); 
-    NpcState _currentState;
-    public void SetState (NpcState.CurrentState _stateToSet)
+    public UnityEvent OnAttackState = new UnityEvent();
+    public UnityEvent OnIdleState   = new UnityEvent();
+    public UnityEvent OnRunState    = new UnityEvent();
+    public NpcState _currentState; 
+    private void Start()
     {
-        _currentState = new NpcState(_stateToSet);
-        OnStateChanged.Invoke();
+        SetState( CurrentState.Idle);
+    }
+
+    public void SetState ( CurrentState _stateToSet)
+    {
+        _currentState = new NpcState(_stateToSet); 
+
+        switch (_stateToSet)
+        {
+            case CurrentState.Idle:
+                OnIdleState.Invoke();
+            break;
+
+            case CurrentState.Run:
+                OnRunState.Invoke();
+            break;
+
+            case CurrentState.Attack:
+                OnAttackState.Invoke();
+            break;
+
+            default:
+                OnIdleState.Invoke();
+            break;
+                 
+        }
+
     }
 }

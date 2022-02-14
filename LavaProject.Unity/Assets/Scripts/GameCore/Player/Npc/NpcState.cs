@@ -1,22 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
-public class NpcState
+namespace NpcStateSetting
 {
+
+    
     public enum CurrentState
-    { 
+    {
         Idle,
         Run,
         Attack
-    
-    }
 
-    public NpcState(CurrentState stateToSet)
+    }
+    [System.Serializable]
+    public class NpcState
     {
-        _currentState = stateToSet;
+         
+        public NpcState(CurrentState stateToSet)
+        {
+            _currentState = stateToSet;
+        }
+        [SerializeField]
+        public  CurrentState _currentState;
     }
 
 
-    private CurrentState _currentState;
+
 }

@@ -9,7 +9,7 @@ public class TimeController : MonoBehaviour
     void Update()
     {
         iSspacePressed = Input.GetKey(KeyCode.Space);
-        Time.timeScale = iSspacePressed ? 0.3f : 1; 
+        Time.timeScale = iSspacePressed ? 0.7f : 1; 
     }
      
      

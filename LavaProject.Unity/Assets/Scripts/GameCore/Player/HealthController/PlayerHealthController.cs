@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerHealthController : MonoBehaviour
+public class PlayerHealthController : MonoBehaviour,IHealthUI
 {
 
     [SerializeField,Range(0,100)] float _health;
@@ -18,7 +18,7 @@ public class PlayerHealthController : MonoBehaviour
 
     public void TakeDamage(float damageValue)
     {
-        if (_immortalMode)
+        if (!_immortalMode)
         {
             var newValue = _health - damageValue;
             _health = Mathf.Clamp(newValue, 0, 100);
@@ -33,5 +33,10 @@ public class PlayerHealthController : MonoBehaviour
     {
         var effect = Instantiate(_particles, transform.position, transform.rotation);
         Destroy(effect, 2);
+    }
+
+    public string GetValue()
+    {
+        return _health.ToString();
     }
 }

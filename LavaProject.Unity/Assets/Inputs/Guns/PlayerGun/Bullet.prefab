@@ -111,27 +111,45 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rigidbody: {fileID: 0}
   _particles: {fileID: 1000011128802252, guid: 96730f8640590934eacb6f860058e7f9, type: 3}
-  _timeToDie: 15
+  _timeToDie: 0.3
   _sizeOverLife:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.040542606
-      value: 0.8519287
-      inSlope: 0
-      outSlope: 0
+      time: 0.2826331
+      value: 0.20994893
+      inSlope: -0.0041064
+      outSlope: -0.0041064
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.17743629
     - serializedVersion: 3
-      time: 13.958883
-      value: 0.13070221
-      inSlope: -0.01846627
-      outSlope: -0.01846627
+      time: 8.343187
+      value: 0.19222178
+      inSlope: -0.003957565
+      outSlope: -0.003957565
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.075443745
+      inWeight: 0.33333334
+      outWeight: 0.2448552
+    - serializedVersion: 3
+      time: 11.512167
+      value: 0.19097868
+      inSlope: -0.005624973
+      outSlope: -0.005624973
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 13.638481
+      value: 0.19044565
+      inSlope: 0.0021129122
+      outSlope: 0.0021129122
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.9433841
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 1

@@ -29,9 +29,11 @@ public class NpcAiSonar : MonoBehaviour
     {
        while(_isActive)
        {  
-           for(float xAngle = 0;xAngle<2;xAngle+=0.5f)
+            
+         
+           for(float xAngle = 0;xAngle<2;xAngle+=0.7f)
             {
-                for (int yAngle = 0; yAngle < 360; yAngle += 10)
+                for (int yAngle = 0; yAngle < 360; yAngle += 15)
                 {
                     _sonar.transform.rotation = Quaternion.Euler( 0,yAngle, 0);
                     _sonar.transform.localPosition =  new Vector3(0, xAngle, 0);
@@ -39,7 +41,7 @@ public class NpcAiSonar : MonoBehaviour
                     RaycastFeature();
                 }
 
-                yield return new WaitForSeconds(1 /2);
+                yield return new WaitForSeconds(0.3f);
             }
         }
     }
@@ -64,7 +66,7 @@ public class NpcAiSonar : MonoBehaviour
                 _npcController.SetDestination(_attentionPoint);
                 _distanceToPlayer = _objectOnVisionLine.distance;
                 if(_distanceToPlayer < 4)
-                    GetComponent<NpcStateMachine>().SetState(NpcState.CurrentState.Attack);
+                    GetComponent<NpcStateMachine>().SetState(NpcStateSetting.CurrentState.Attack);
             }
 
         } 

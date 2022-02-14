@@ -7,6 +7,7 @@ using System.Linq;
 
 public class GunLogic : MonoBehaviour
 {
+    private const float shootDelay = 0.5f;
     [SerializeField] GameObject _bullet; 
     UnityEvent OnShot = new UnityEvent(); 
     [SerializeField] List<GameObject> _enemyList = new List<GameObject>(); 
@@ -15,6 +16,7 @@ public class GunLogic : MonoBehaviour
     [SerializeField] PlayerAnimController _playerAnimController;
     [SerializeField, Range(0, 100)] float _bulletPower; 
     [SerializeField, Range(0, 100)] float _bulletSpeed;
+    private GameObject targetedEnemy;
 
     public void SetGunSettings(float power, float speed)
     {
@@ -27,11 +29,12 @@ public class GunLogic : MonoBehaviour
         _bullet = transform.GetChild(0).gameObject;
         OnShot.AddListener(Shot);
         _attacKey = KeyCode.Space;
+        FindNewEnemy();
     }
 
     private void Shot()
     {
-        StartCoroutine(DelayShot(0.5f));
+        StartCoroutine(DelayShot(shootDelay));
     }
 
     IEnumerator DelayShot(float sec)
@@ -46,22 +49,27 @@ public class GunLogic : MonoBehaviour
     {
        if(_enemyList.Count>0)
         {
-            _bullet.transform.SetParent(null);
-            GameObject enemy = _enemyList
-                            .Select(enemy => enemy.transform)
-                                .OrderBy(enemyTransform
-                                        => Vector3.Distance(transform.position, enemyTransform.position))
-                                                .ToList()[0].gameObject;
-            _bullet.GetComponent<BulletContreoller>().SetUp(_bulletPower,_bulletSpeed);
-            _bullet.GetComponent<BulletContreoller>().SetDestination(enemy);
+            _bullet.transform.SetParent(null); 
+            FindNewEnemy(); 
+            _bullet.GetComponent<BulletContreoller>().SetUp(_bulletPower, _bulletSpeed);
+            _bullet.GetComponent<BulletContreoller>().SetDestination(targetedEnemy);
         }
-         
+
+    }
+
+    private void FindNewEnemy()
+    {
+        targetedEnemy = _enemyList
+                                    .Select(enemy => enemy.transform)
+                                        .OrderBy(enemyTransform
+                                                => Vector3.Distance(transform.position, enemyTransform.position))
+                                                        .ToList()[0].gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(_attacKey))
+        if (Input.GetKey(_attacKey))
         {
             OnShot.Invoke();
         }

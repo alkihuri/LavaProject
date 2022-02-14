@@ -13,7 +13,7 @@ public class NpcController : MonoBehaviour
     [SerializeField] bool _isLookingForPlayer;
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         _isLookingForPlayer = true;
         _npc = GetComponent<NavMeshAgent>();   
     }
@@ -23,19 +23,24 @@ public class NpcController : MonoBehaviour
     private void OnDestroy()
     {
         GameObject particles = Instantiate(_particles, transform.position, transform.rotation);
-        Destroy(particles, 1);
+        Destroy(particles, particles.GetComponent<ParticleSystem>().duration);
     }
 
     public void SetDestination(Vector3 point)
     {
          if (!_isLookingForPlayer)
                 return;
-        Debug.DrawLine(transform.position, point, Color.red);
         _npc.SetDestination(point);
+        if (_npc.velocity.magnitude > 0)
+            GetComponent<NpcStateMachine>().SetState(NpcStateSetting.CurrentState.Run);
     }
 
     public void  GiveDamage(float _power)
     {
         GetComponent<NpcHealthController>().TakeDamage(_power);
     }
+
+
+
+    
 }
