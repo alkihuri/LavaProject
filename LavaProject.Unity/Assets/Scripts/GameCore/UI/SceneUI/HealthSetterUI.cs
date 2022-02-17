@@ -13,6 +13,6 @@ public class HealthSetterUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _text.text =  _root.GetComponent<IHealthUI>().GetValue();
+        _text.text = _root.GetComponent<IHealthUI>().GetValue();
     }
 }

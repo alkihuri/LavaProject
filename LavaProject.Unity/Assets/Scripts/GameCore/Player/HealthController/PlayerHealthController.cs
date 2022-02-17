@@ -37,6 +37,6 @@ public class PlayerHealthController : MonoBehaviour,IHealthUI
 
     public string GetValue()
     {
-        return _health.ToString();
+        return _health.ToString("#.");
     }
 }

@@ -33,6 +33,6 @@ public class NpcHealthController : MonoBehaviour, IHealthUI
 
     public string GetValue()
     {
-        return _health.ToString();
+        return _health.ToString("#.");
     }
 }
