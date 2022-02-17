@@ -5,27 +5,56 @@ using System;
 
 namespace StateSettings
 {
-
-    
-    public enum CurrentState
-    {
-        Idle,
-        Run,
-        Attack
-
+    [Serializable]
+    public enum State
+    { 
+        attack,
+        idle,
+        run    
     }
-    [System.Serializable]
-    public class NpcState
+
+
+
+    [Serializable]
+    public abstract class NpcState 
     {
-         
-        public NpcState(CurrentState stateToSet)
+        public abstract AjdahaState ApllyState();
+        public string availibaleVersionOfGame { get; set; }
+        public State state { get; set; }
+    }
+
+    [Serializable]
+    public abstract class AjdahaState : NpcState
+    {
+      
+    }
+    [Serializable]
+    public class IdleAjdaha : AjdahaState
+    { 
+        public override AjdahaState ApllyState()
         {
-            _currentState = stateToSet;
+            state = State.idle;
+            return this;
         }
-        [SerializeField]
-        public  CurrentState _currentState;
     }
-
+    [Serializable]
+    public class AttackAjdaha : AjdahaState
+    {
+        public override AjdahaState ApllyState()
+        {
+            state = State.attack;
+            return this;
+        }
+    }
+    [Serializable]
+    public class RunAjdaha : AjdahaState
+    {
+        public override AjdahaState ApllyState()
+        {
+            state = State.run;
+            return this;
+        }
+    }
 
 
 }

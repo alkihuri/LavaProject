@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using StateSettings;
  
 public class NpcAiSonar : MonoBehaviour
 {
@@ -66,7 +66,7 @@ public class NpcAiSonar : MonoBehaviour
                 _npcController.SetDestination(_attentionPoint);
                 _distanceToPlayer = _objectOnVisionLine.distance;
                 if(_distanceToPlayer < 4)
-                    GetComponent<NpcStateMachine>().SetState(StateSettings.CurrentState.Attack);
+                    GetComponent<NpcStateMachine>().SetState( new AttackAjdaha());
             }
 
         } 

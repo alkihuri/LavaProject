@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using StateSettings;
 
 public class NpcController : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class NpcController : MonoBehaviour
                 return;
         _npc.SetDestination(point);
         if (_npc.velocity.magnitude > 0)
-            GetComponent<NpcStateMachine>().SetState(StateSettings.CurrentState.Run);
+            GetComponent<NpcStateMachine>().SetState( new RunAjdaha() );
     }
 
     public void  GiveDamage(float _power)
