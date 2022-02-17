@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +8,7 @@ using System.Linq;
 public class GunLogic : MonoBehaviour
 {
     private const float shootDelay = 0.5f;
+    [SerializeField] Transform playerTransform;
     [SerializeField] GameObject _bullet; 
     UnityEvent OnShot = new UnityEvent(); 
     [SerializeField] List<GameObject> _enemyList = new List<GameObject>(); 
@@ -17,6 +18,7 @@ public class GunLogic : MonoBehaviour
     [SerializeField, Range(0, 100)] float _bulletPower; 
     [SerializeField, Range(0, 100)] float _bulletSpeed;
     private GameObject targetedEnemy;
+    private bool _canShoot;
 
     public void SetGunSettings(float power, float speed)
     {
@@ -30,15 +32,19 @@ public class GunLogic : MonoBehaviour
         OnShot.AddListener(Shot);
         _attacKey = KeyCode.Space;
         FindNewEnemy();
+        if (!playerTransform.gameObject.GetComponent<PlayerHealthController>())
+            Debug.LogError("Нужно исправить ссылку на персонажа!");
     }
 
     private void Shot()
     {
-        StartCoroutine(DelayShot(shootDelay));
+        StartCoroutine(DelayShot(shootDelay)); 
     }
 
     IEnumerator DelayShot(float sec)
-    { 
+    {
+        if(targetedEnemy!=null)
+            playerTransform.LookAt(targetedEnemy.transform.position);
         _enemyList = _enemyList.Where(enemy => enemy != null).ToList();  
         _playerAnimController.PlayAttack();
         yield return new WaitForSeconds(sec);
@@ -47,7 +53,7 @@ public class GunLogic : MonoBehaviour
 
     private void BulletReleaseAndShot()
     {
-       if(_enemyList.Count>0)
+       if(_canShoot)
         {
             _bullet.transform.SetParent(null); 
             FindNewEnemy(); 
@@ -59,21 +65,31 @@ public class GunLogic : MonoBehaviour
 
     private void FindNewEnemy()
     {
-        targetedEnemy = _enemyList
-                                    .Select(enemy => enemy.transform)
-                                        .OrderBy(enemyTransform
-                                                => Vector3.Distance(transform.position, enemyTransform.position))
-                                                        .ToList()[0].gameObject;
+        if(_enemyList.Count > 0)
+            if(_enemyList[0].gameObject.activeInHierarchy)
+                targetedEnemy = _enemyList
+                                        .Select(enemy => enemy.transform)
+                                            .OrderBy(enemyTransform
+                                                    => Vector3.Distance(transform.position, enemyTransform.position))
+                                                            .ToList()[0].gameObject;
+        
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (Input.GetKey(_attacKey))
+        _canShoot = GetComponentInChildren<BulletContreoller>();
+        Shoothandler();
+    }
+
+    private void Shoothandler()
+    {
+
+
+        if (Input.GetKeyDown(_attacKey))
         {
             OnShot.Invoke();
         }
-        if(!(transform.childCount > 0))
+        if (!(_canShoot))
         {
             NewBulletSpawn();
         }

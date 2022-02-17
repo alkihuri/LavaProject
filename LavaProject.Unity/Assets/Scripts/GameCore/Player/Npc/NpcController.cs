@@ -11,12 +11,17 @@ public class NpcController : MonoBehaviour
      
     NavMeshAgent _npc; 
     [SerializeField] GameObject _particles;
-    [SerializeField] bool _isLookingForPlayer;
+    bool _isLookingForPlayer;
+    NpcStateMachine _stateMachine;
+    NpcHealthController _npcHealthController;
+
     // Start is called before the first frame update
     void Start()
     { 
         _isLookingForPlayer = true;
-        _npc = GetComponent<NavMeshAgent>();   
+        _npc = GetComponent<NavMeshAgent>();
+        _stateMachine = GetComponent<NpcStateMachine>();
+        _npcHealthController = GetComponent<NpcHealthController>();
     }
 
     
@@ -33,12 +38,12 @@ public class NpcController : MonoBehaviour
                 return;
         _npc.SetDestination(point);
         if (_npc.velocity.magnitude > 0)
-            GetComponent<NpcStateMachine>().SetState( new RunAjdaha() );
+           _stateMachine.SetState( new RunAjdaha());
     }
 
     public void  GiveDamage(float _power)
     {
-        GetComponent<NpcHealthController>().TakeDamage(_power);
+        _npcHealthController.TakeDamage(_power);
     }
 
 

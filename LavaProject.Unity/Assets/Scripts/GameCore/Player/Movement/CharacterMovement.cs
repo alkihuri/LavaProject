@@ -9,24 +9,23 @@ public class CharacterMovement : MonoBehaviour
 {
     NavMeshAgent _player; 
     RaycastManager _raycastManager;
-    [SerializeField,Range(-1,1)]private float _vertical;
-    [SerializeField, Range(-1, 1)] private float _horizontal;
+    private float _vertical;
+    private float _horizontal;
     private Vector3 _destinationPoint;
 
     // Start is called before the first frame update
     void Start()
     {
+        _destinationPoint = transform.position;
         _player = GetComponent<NavMeshAgent>();
         _raycastManager = GetComponent<RaycastManager>();
     }
 
     // Update is called once per frame
     void Update()
-    {
-
-
+    { 
         InputDataHandler();
-        ThirdPersonControl();
+        //ThirdPersonControl();
         TopViewControl();
         _player.SetDestination(_destinationPoint);
     }

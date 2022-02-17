@@ -29,7 +29,8 @@ public class BulletContreoller : MonoBehaviour
 
         if(!_rigidbody.isKinematic)
         {
-            distace = Vector3.Distance(transform.position, _target.transform.position);
+            if(_target != null)
+                distace = Vector3.Distance(transform.position, _target.transform.position);
             transform.localScale = Vector3.one * _sizeOverLife.Evaluate(Mathf.Clamp(distace, 0, 1)); 
         }
         if (_target != null)
@@ -49,11 +50,9 @@ public class BulletContreoller : MonoBehaviour
     }
 
     private void NpcTarget()
-    {
-        Vector3 v1 = transform.position;
-        Vector3 v2 = _target.transform.position;
-        Vector3 v3 = v2 - v1;
-        _rigidbody.AddForce(v3 * _speed );
+    { 
+        Vector3 direction = _target.transform.position - transform.position; ;
+        _rigidbody.AddForce(direction * _speed );
     }
 
 

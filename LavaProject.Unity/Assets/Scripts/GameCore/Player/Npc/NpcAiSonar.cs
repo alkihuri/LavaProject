@@ -10,13 +10,12 @@ public class NpcAiSonar : MonoBehaviour
     [SerializeField] GameObject _sonar;
     [SerializeField] bool _isActive;
     [SerializeField] NpcController _npcController;
-    [SerializeField] Vector3 _attentionPoint;
-
+    [SerializeField] Vector3 _attentionPoint; 
     [SerializeField, Range(0, 10)] float _distanceToPlayer;
-
-
+    NpcStateMachine _npcStateMachine;
     void Start()
     {
+        _npcStateMachine = GetComponent<NpcStateMachine>();
         _npcController = GetComponent<NpcController>();
         _radius = 50;
         _isActive = true;
@@ -27,7 +26,7 @@ public class NpcAiSonar : MonoBehaviour
 
     IEnumerator  SonarFeature()
     {
-       while(_isActive)
+       while(_isActive && gameObject.activeInHierarchy)
        {  
             
          
@@ -59,14 +58,15 @@ public class NpcAiSonar : MonoBehaviour
                 return;
 
             _attentionPoint = _objectOnVisionLine.point;
-            transform.LookAt(_attentionPoint); 
+           
            
             if(objectOnHitLine.GetComponent<CharacterMovement>())
-            { 
+            {
+                transform.LookAt(_attentionPoint);
                 _npcController.SetDestination(_attentionPoint);
                 _distanceToPlayer = _objectOnVisionLine.distance;
                 if(_distanceToPlayer < 4)
-                    GetComponent<NpcStateMachine>().SetState( new AttackAjdaha());
+                    _npcStateMachine.SetState( new AttackAjdaha());
             }
 
         } 
