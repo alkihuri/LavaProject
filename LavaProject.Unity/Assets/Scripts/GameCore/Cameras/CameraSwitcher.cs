@@ -24,6 +24,7 @@ public class CameraSwitcher : MonoBehaviour
 
     private void Start()
     {
+       // Cursor.lockState = CursorLockMode.Locked;
         OnCameraChanged.AddListener(CameraSwitchMainLogic);
         _cameraChangeHotKey = KeyCode.V;
     }

@@ -37,4 +37,9 @@ public class TowerController : MonoBehaviour, IHealthUI
     {
         return _hp.ToString("#.");
     }
+
+    public float GetFloatValue()
+    {
+        throw new System.NotImplementedException();
+    }
 }

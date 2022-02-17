@@ -35,4 +35,9 @@ public class NpcHealthController : MonoBehaviour, IHealthUI
     {
         return _health.ToString("#.");
     }
+
+    public float GetFloatValue()
+    {
+        return _health;
+    }
 }

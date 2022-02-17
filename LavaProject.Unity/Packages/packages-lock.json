@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.unity.analytics": {
+      "version": "3.2.2",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
     "com.unity.cinemachine": {
       "version": "2.6.11",
       "depth": 0,
@@ -63,6 +70,12 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.package-manager-ui": {
+      "version": "2.2.0",
+      "depth": 0,
+      "source": "builtin",
+      "dependencies": {}
+    },
     "com.unity.postprocessing": {
       "version": "3.2.0",
       "depth": 0,
@@ -70,6 +83,13 @@
       "dependencies": {
         "com.unity.modules.physics": "1.0.0"
       },
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.purchasing": {
+      "version": "2.0.3",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
       "url": "https://packages.unity.com"
     },
     "com.unity.recorder": {
@@ -163,7 +183,7 @@
     },
     "com.unity.ugui": {
       "version": "1.0.0",
-      "depth": 0,
+      "depth": 1,
       "source": "builtin",
       "dependencies": {
         "com.unity.modules.ui": "1.0.0",

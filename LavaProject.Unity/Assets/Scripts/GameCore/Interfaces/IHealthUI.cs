@@ -5,4 +5,5 @@ using UnityEngine;
 interface IHealthUI  
 {
     public string GetValue();
+    public float GetFloatValue();
 }

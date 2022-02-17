@@ -9,7 +9,7 @@ public class BulletContreoller : MonoBehaviour
     GameObject _target;
     [SerializeField] Rigidbody _rigidbody;
     [SerializeField] GameObject _particles;
-    [SerializeField,Range(0,100)] float _timeToDie = 0.1f;
+    [SerializeField,Range(0,100)] float _timeToDie = 5f;
     private float _speed;
     private float _power;
     [SerializeField] AnimationCurve _sizeOverLife;
@@ -17,7 +17,8 @@ public class BulletContreoller : MonoBehaviour
 
     private void Start()
     {
-        
+        GetComponent<TrailRenderer>().enabled = false;
+        _timeToDie = 1;
         _rigidbody = GetComponent<Rigidbody>();
         _rigidbody.isKinematic = true;
         _rigidbody.useGravity = false; 
@@ -31,7 +32,7 @@ public class BulletContreoller : MonoBehaviour
         {
             if(_target != null)
                 distace = Vector3.Distance(transform.position, _target.transform.position);
-            transform.localScale = Vector3.one * _sizeOverLife.Evaluate(Mathf.Clamp(distace, 0, 1)); 
+            transform.localScale = Vector3.one * _sizeOverLife.Evaluate(Mathf.Clamp(distace, 0, 1));
         }
         if (_target != null)
         {
@@ -58,8 +59,10 @@ public class BulletContreoller : MonoBehaviour
 
     public  void SetDestination(GameObject position)
     {
+        GetComponent<TrailRenderer>().enabled = true;
         _rigidbody.isKinematic = false; 
-        _target = position; 
+        _target = position;
+        _rigidbody.AddForce(transform.up * 5, ForceMode.Impulse);
         Destroy(gameObject, _timeToDie);
     }
 
@@ -69,6 +72,8 @@ public class BulletContreoller : MonoBehaviour
         {
             other.gameObject.GetComponent<NpcController>().GiveDamage(_power);
         }
+         
+
         if(!_rigidbody.isKinematic  && other.gameObject.GetComponent<NpcController>() )
             Destroy(gameObject);  
     }
@@ -81,7 +86,7 @@ public class BulletContreoller : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (_rigidbody.velocity.magnitude > 2 && false)
+        if (_rigidbody.velocity.magnitude > 2 )
         {
             GameObject particles = Instantiate(_particles, transform.position, transform.rotation);
             Destroy(particles, 1);

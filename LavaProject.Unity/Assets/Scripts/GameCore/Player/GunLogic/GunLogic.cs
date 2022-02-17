@@ -85,7 +85,7 @@ public class GunLogic : MonoBehaviour
     {
 
 
-        if (Input.GetKeyDown(_attacKey))
+        if (Input.GetKey(_attacKey))
         {
             OnShot.Invoke();
         }
