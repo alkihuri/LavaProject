@@ -45,6 +45,7 @@ public class GunLogic : MonoBehaviour
     {
         if(targetedEnemy!=null)
             playerTransform.LookAt(targetedEnemy.transform.position);
+
         _enemyList = _enemyList.Where(enemy => enemy != null).ToList();  
         _playerAnimController.PlayAttack();
         yield return new WaitForSeconds(sec);
@@ -105,11 +106,11 @@ public class GunLogic : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        LightFeature(other);
+        TriggerZoneCheker(other);
 
     }
 
-    private void LightFeature(Collider other)
+    private void TriggerZoneCheker(Collider other)
     {
         GameObject enteredObject = other.transform.gameObject;
         if (enteredObject.GetComponent<NpcController>())

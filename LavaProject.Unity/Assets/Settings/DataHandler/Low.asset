@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Low
   m_EditorClassIdentifier: 
   CHARACTER_SPEED: 10
-  SHOOTING_SPEED: 5
-  BULLET_POWER: 0.1
+  SHOOTING_SPEED: 10
+  BULLET_POWER: 50

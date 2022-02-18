@@ -36,10 +36,9 @@ public class CharacterMovement : MonoBehaviour
     }
 
     private void TopViewControl()
-    {
-        if (!Input.GetMouseButtonDown(0))
-            return;
-        _destinationPoint = _raycastManager.GetDestinationPoint() ;
+    { 
+        if(Input.GetMouseButtonDown(0))
+            _destinationPoint = _raycastManager.GetDestinationPoint() ;
     }
 
     private void InputDataHandler()

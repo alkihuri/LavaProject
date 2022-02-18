@@ -30,7 +30,7 @@ public class NpcAiSonar : MonoBehaviour
        {  
             
          
-           for(float xAngle = -2;xAngle<5;xAngle+=0.2f)
+           for(float xAngle = -2;xAngle<15;xAngle+=0.1f)
             {
                 for (int yAngle = 0; yAngle < 360; yAngle += 15)
                 {
@@ -40,7 +40,7 @@ public class NpcAiSonar : MonoBehaviour
                     RaycastFeature();
                 }
 
-                yield return new WaitForSeconds(0.3f);
+                yield return new WaitForSeconds(0.1f);
             }
         }
     }
@@ -50,7 +50,7 @@ public class NpcAiSonar : MonoBehaviour
         Vector3 startVector = _sonar.transform.GetChild(0).transform.position;
         Vector3 directionVector = _sonar.transform.GetChild(0).transform.forward;
         RaycastHit _objectOnVisionLine;
-        if (Physics.Raycast(startVector, directionVector, out _objectOnVisionLine, _radius,6))
+        if (Physics.Raycast(startVector, directionVector, out _objectOnVisionLine, _radius))
         {
             var objectOnHitLine = _objectOnVisionLine.transform.gameObject;
 
@@ -69,11 +69,7 @@ public class NpcAiSonar : MonoBehaviour
                     _npcStateMachine.SetState( new AttackAjdaha());
             }
 
-        }
-        else
-        {
-            _npcController.SetDestination(transform.forward);
-        }
+        } 
         
     }
 

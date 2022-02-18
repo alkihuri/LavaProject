@@ -24,5 +24,6 @@ public class HealthSetterUI : MonoBehaviour
         _text.text = _root.GetComponent<IHealthUI>().GetValue();
         _bar.BarValue = _root.GetComponent<IHealthUI>().GetFloatValue();
         transform.LookAt(_camera.transform.forward*100);
+        transform.rotation = _camera.transform.rotation;
     }
 }

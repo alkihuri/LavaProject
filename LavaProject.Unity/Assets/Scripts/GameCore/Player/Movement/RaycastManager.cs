@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class RaycastManager : MonoBehaviour
 {
@@ -18,13 +19,12 @@ public class RaycastManager : MonoBehaviour
         transform.LookAt(_destinationPoint);
         return _destinationPoint;
     }
-
+     
 
     // Update is called once per frame
     void Update()
     {
-        _worldPosMousePoint = _camera.ScreenPointToRay(Input.mousePosition);
-        
+        _worldPosMousePoint = _camera.ScreenPointToRay(Input.mousePosition); 
         RaycastFeature();
     }
 
