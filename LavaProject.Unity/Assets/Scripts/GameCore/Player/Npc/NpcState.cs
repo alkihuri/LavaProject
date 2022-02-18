@@ -40,9 +40,11 @@ namespace StateSettings
     [Serializable]
     public class AttackAjdaha : AjdahaState
     {
+        GameObject particles;
         public override AjdahaState ApllyState()
         {
             state = State.attack;
+            particles = Resources.Load<GameObject>("Particles/Particles/Boom");  
             return this;
         }
     }

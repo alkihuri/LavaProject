@@ -28,6 +28,10 @@ public class NpcHealthController : MonoBehaviour, IHealthUI
         GetComponentInChildren<Animator>().enabled = false;
         Destroy(GetComponent<NpcController>());
         Destroy(GetComponent<NpcStateMachine>());
+        var rigidbody = gameObject.AddComponent<Rigidbody>();
+        rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.AddForce(transform.up, ForceMode.Impulse);
         Destroy(gameObject,5);
     }
 

@@ -30,9 +30,9 @@ public class NpcAiSonar : MonoBehaviour
        {  
             
          
-           for(float xAngle = -2;xAngle<15;xAngle+=0.1f)
+           for(float xAngle = -2;xAngle<7;xAngle+=0.1f)
             {
-                for (int yAngle = 0; yAngle < 360; yAngle += 15)
+                for (int yAngle = 0; yAngle < 360; yAngle += 5)
                 {
                     _sonar.transform.rotation = Quaternion.Euler( 0,yAngle, 0);
                     _sonar.transform.localPosition =  new Vector3(0, xAngle, 0);

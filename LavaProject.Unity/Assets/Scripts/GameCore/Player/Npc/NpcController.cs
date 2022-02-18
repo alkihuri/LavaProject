@@ -24,8 +24,12 @@ public class NpcController : MonoBehaviour
         _npcHealthController = GetComponent<NpcHealthController>();
     }
 
-    
 
+    private void OnEnable()
+    {
+        GameObject particles = Instantiate(_particles, transform.position, transform.rotation);
+        Destroy(particles, particles.GetComponent<ParticleSystem>().duration);
+    }
     private void OnDestroy()
     {
         GameObject particles = Instantiate(_particles, transform.position, transform.rotation);
