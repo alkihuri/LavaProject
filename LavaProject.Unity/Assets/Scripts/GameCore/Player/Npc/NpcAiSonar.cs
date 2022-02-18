@@ -30,7 +30,7 @@ public class NpcAiSonar : MonoBehaviour
        {  
             
          
-           for(float xAngle = -2;xAngle<7;xAngle+=0.1f)
+           for(float xAngle = -2;xAngle<4;xAngle+=0.3f)
             {
                 for (int yAngle = 0; yAngle < 360; yAngle += 5)
                 {
