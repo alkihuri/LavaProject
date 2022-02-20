@@ -10,7 +10,7 @@ public class GunLogic : MonoBehaviour
     private const float shootDelay = 0.5f;
     [SerializeField] Transform playerTransform;
     [SerializeField] GameObject _bullet; 
-    UnityEvent OnShot = new UnityEvent(); 
+    public UnityEvent OnShot = new UnityEvent(); 
     [SerializeField] List<GameObject> _enemyList = new List<GameObject>(); 
     [SerializeField] KeyCode _attacKey;
     [SerializeField] GameObject _bulletPrefab;

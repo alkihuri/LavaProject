@@ -13,6 +13,10 @@ public class NpcStateMachine : MonoBehaviour,IStateMachine
     object _currentState;
     public State _state;
 
+    private void Awake()
+    {
+        OnAttackState.AddListener(AudioManager.Instance.PlayExplosion);
+    }
     private void Start()
     {
         SetState(new IdleAjdaha());

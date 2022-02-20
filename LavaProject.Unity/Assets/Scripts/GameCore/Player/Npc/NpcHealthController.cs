@@ -8,6 +8,10 @@ public class NpcHealthController : MonoBehaviour, IHealthUI
 { 
     public float _health; 
     [SerializeField] public UnityEvent OnDie = new UnityEvent();
+    private void Awake()
+    {
+        OnDie.AddListener(AudioManager.Instance.PlayExplosion);
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -28,10 +32,17 @@ public class NpcHealthController : MonoBehaviour, IHealthUI
         GetComponentInChildren<Animator>().enabled = false;
         Destroy(GetComponent<NpcController>());
         Destroy(GetComponent<NpcStateMachine>());
-        var rigidbody = gameObject.AddComponent<Rigidbody>();
-        rigidbody.constraints = RigidbodyConstraints.FreezeAll;
-        rigidbody.velocity = Vector3.zero;
-        rigidbody.AddForce(transform.up, ForceMode.Impulse);
+        try
+        { 
+            var rigidbody = gameObject.AddComponent<Rigidbody>();
+            rigidbody.constraints = RigidbodyConstraints.FreezeAll;
+            rigidbody.velocity = Vector3.zero;
+            rigidbody.AddForce(transform.up, ForceMode.Impulse);
+        }
+        catch
+        {
+            Debug.Log("hai hai balyad!");
+        }
         Destroy(gameObject,5);
     }
 

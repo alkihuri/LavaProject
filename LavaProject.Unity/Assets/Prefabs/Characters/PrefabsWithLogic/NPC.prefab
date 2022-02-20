@@ -375,6 +375,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _radiusOfAattack: 0
+  particles: {fileID: 0}
 --- !u!1001 &589233133660907865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -928,7 +929,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 683276104696040155, guid: 4c2e4cb233092b147b04a44104744458, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 17.219995
+      value: -12
       objectReference: {fileID: 0}
     - target: {fileID: 684018869315738083, guid: 4c2e4cb233092b147b04a44104744458, type: 3}
       propertyPath: m_SizeDelta.x
@@ -956,7 +957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 684246016415371713, guid: 4c2e4cb233092b147b04a44104744458, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -9.3075
+      value: -23
       objectReference: {fileID: 0}
     - target: {fileID: 748550191057954313, guid: 4c2e4cb233092b147b04a44104744458, type: 3}
       propertyPath: m_Layer

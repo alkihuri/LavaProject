@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BulletContreoller : MonoBehaviour
 {
@@ -15,6 +16,13 @@ public class BulletContreoller : MonoBehaviour
     [SerializeField] AnimationCurve _sizeOverLife;
     private float distace;
 
+    public UnityEvent OnExplosion;
+
+
+    private void Awake()
+    {
+        OnExplosion.AddListener(AudioManager.Instance.PlayExplosion);
+    }
     private void Start()
     {
         GetComponent<TrailRenderer>().enabled = false;
@@ -86,6 +94,7 @@ public class BulletContreoller : MonoBehaviour
 
     private void OnDestroy()
     {
+        OnExplosion.Invoke();
         if (_rigidbody.velocity.magnitude > 2 )
         {
             GameObject particles = Instantiate(_particles, transform.position, transform.rotation);

@@ -40,7 +40,7 @@ public class NpcController : MonoBehaviour
     {
          if (!_isLookingForPlayer)
                 return;
-        _npc.SetDestination(point);
+        _npc.SetDestination(point);  
         if (_npc.velocity.magnitude > 0)
            _stateMachine.SetState( new RunAjdaha());
     }
@@ -54,3 +54,6 @@ public class NpcController : MonoBehaviour
 
     
 }
+
+
+ 
