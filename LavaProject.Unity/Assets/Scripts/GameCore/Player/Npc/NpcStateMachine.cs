@@ -25,11 +25,11 @@ public class NpcStateMachine : MonoBehaviour,IStateMachine
     public void SetState(NpcState stateToSet)
     {
 
-        _currentState = stateToSet.ApllyState();                // тупо полиморфное поведение 
+        _currentState = stateToSet.ApllyState();                 
 
-        if (!(_currentState is AjdahaState))                    // тупо  визитер
+        if (!(_currentState is AjdahaState))                     
             return;          
-        _state = ((AjdahaState)_currentState).state;            //upcast еже 
+        _state = ((AjdahaState)_currentState).state;           
         if (stateToSet is AttackAjdaha)  
             OnAttackState.Invoke();
         if (stateToSet is RunAjdaha)
